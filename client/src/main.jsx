@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import './styles/index.css';
-import * as serviceWorkerRegistration from './serviceWorkerRegistration'; // Importation du service worker
+// import * as serviceWorkerRegistration from './serviceWorkerRegistration'; // Importation du service worker
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -14,4 +14,4 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 );
 
 // Enregistrer le service worker pour activer le mode hors-ligne et d'autres fonctionnalités PWA
-serviceWorkerRegistration.register();
+// serviceWorkerRegistration.register();

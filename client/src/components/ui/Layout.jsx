@@ -28,8 +28,8 @@ const Layout = () => {
         <Breadcrumb />
       </div>
       {isHomePage && (
-        <main className="flex-grow mt-20">
-          <div className="container mx-auto px-4 py-8">
+        <main className="flex-grow mt-18">
+          <div className="container mx-auto px-4 py-22">
             <h1 className="text-3xl md:text-5xl font-bold text-center mt-16 mb-4">
               Prenez le contrôle de vos logements insolites
             </h1>
@@ -62,32 +62,6 @@ const Layout = () => {
       <div className="flex-grow">
         <Outlet />
       </div>
-
-      <nav className="container mx-auto px-4 py-8">
-        <h2 className="text-xl font-semibold mb-4">Liens utiles</h2>
-        <ul className="grid grid-cols-2 md:grid-cols-4 gap-4">
-          <li>
-            <Link to="/about" className="text-blue-600 hover:underline">
-              À propos de nous
-            </Link>
-          </li>
-          <li>
-            <Link to="/cgv" className="text-blue-600 hover:underline">
-              CGV
-            </Link>
-          </li>
-          <li>
-            <Link to="/sitemap" className="text-blue-600 hover:underline">
-              Plan du site
-            </Link>
-          </li>
-          <li>
-            <Link to="/contact" className="text-blue-600 hover:underline">
-              Contact
-            </Link>
-          </li>
-        </ul>
-      </nav>
 
       <Footer />
     </div>
