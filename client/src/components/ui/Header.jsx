@@ -164,7 +164,7 @@ export const Header = () => {
                   </>
                 )}
                 <Link
-                  to="/become-host"
+                  to="/infos-proprietaires"
                   className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
                 >
                   Propriétaire
@@ -222,11 +222,13 @@ export const Header = () => {
                 </>
               )}
               <Link
-                to="/become-host"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                to="/infos-proprietaires"
+                className="block px-4 py-2 text-sm text-gray-700
+              hover:bg-gray-100"
               >
-                Devenez propriétaire
+                Infos Propriétaires
               </Link>
+
               <Link
                 to="/about"
                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"

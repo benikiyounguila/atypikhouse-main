@@ -30,7 +30,10 @@ const Layout = () => {
       {isHomePage && (
         <main className="flex-grow mt-18">
           <div className="container mx-auto px-4 py-22">
-            <h1 className="text-3xl md:text-5xl font-bold text-center mt-16 mb-4">
+            <h1
+              className="text-blue-800 md:text-5xl font-bold text-center mt-16 mb-4
+             "
+            >
               Prenez le contrôle de vos logements insolites
             </h1>
             <p className="text-gray-800 text-center mb-8">

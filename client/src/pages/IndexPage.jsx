@@ -27,7 +27,7 @@ const IndexPage = () => {
   }
 
   return (
-    <div className="px-4 py-38">
+    <div className="px-4 py-38  bg-gray-100">
       <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 md:gap-0 lg:grid-cols-3 lg:gap-2 xl:grid-cols-4 xl:gap-10">
         {currentPlaces.length > 0 ? (
           currentPlaces.map((place) => (

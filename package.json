@@ -13,9 +13,11 @@
     "@loadable/component": "^5.16.4",
     "@loadable/server": "^5.16.5",
     "express": "^4.21.1",
+    "glob": "^11.0.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "react-router-dom": "^6.28.0"
+    "react-router-dom": "^6.28.0",
+    "sitemap": "^8.0.0"
   },
   "scripts": {
     "dev": "node server",
@@ -23,6 +25,7 @@
     "build:server": "webpack --config webpack.config.js --config-name 1",
     "build": "npm run build:client && npm run build:server",
     "start": "node api/build/server.js",
-    "serve": "NODE_ENV=production node server"
+    "serve": "NODE_ENV=production node server",
+    "generate-sitemap": "node ./api/scripts/sitemap-generator.js"
   }
 }

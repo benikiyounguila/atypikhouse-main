@@ -14,7 +14,8 @@ import PlacesFormPage from './pages/PlacesFormPage';
 import PlacePage from './pages/PlacePage';
 import SingleBookedPlace from './pages/SingleBookedPlace';
 import NotFoundPage from './pages/NotFoundPage';
-import MentionsLegales from './components/ui/MentionsLegales';
+import InfosProprietaires from './pages/InfosProprietairesPage';
+import MentionsLegales from './pages/MentionsLegalesPage';
 
 import AdminDashboard from './pages/AdminDashboard';
 import AdminUsers from './pages/AdminUsers';
@@ -50,6 +51,12 @@ function App() {
                 <Route path="/account" element={<ProfilePage />} />
                 <Route path="/account/places" element={<PlacesPage />} />
                 <Route
+                  path="/infos-proprietaires"
+                  element={<InfosProprietaires />}
+                />
+                <Route path="/mentions-legales" element={<MentionsLegales />} />
+
+                <Route
                   path="/account/places/new"
                   element={<PlacesFormPage />}
                 />
@@ -59,7 +66,7 @@ function App() {
                 />
                 <Route path="/place/:id" element={<PlacePage />} />
                 <Route path="/account/bookings" element={<BookingsPage />} />
-                <Route path="/mentions-legales" element={<MentionsLegales />} />
+
                 <Route
                   path="/account/bookings/:id"
                   element={<SingleBookedPlace />}

@@ -169,7 +169,9 @@ const Footer = () => {
                   Sitemap
                 </li>
                 <li className="cursor-pointer list-disc text-gray-700 decoration-1 underline-offset-1 hover:underline">
-                  <Link to="/mentions-legales">Legal terms</Link>
+                  <Link to="/mentions-legales#mentions-legales-title">
+                    Legal terms
+                  </Link>
                 </li>
               </ul>
             </div>

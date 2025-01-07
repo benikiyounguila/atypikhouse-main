@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { GoogleLogin } from '@react-oauth/google';
@@ -7,6 +7,18 @@ import { Navigate } from 'react-router-dom';
 import { useAuth } from '../../hooks';
 
 const RegisterPage = () => {
+  useEffect(() => {
+    if (location.hash === '#register-title') {
+      const element = document.getElementById('register-title');
+      if (element) {
+        const yOffset = -100;
+        const y =
+          element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }
+  }, [location]);
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -49,7 +61,9 @@ const RegisterPage = () => {
   return (
     <div className="mt-4 flex grow items-center justify-around p-4 md:p-0  flex-grow mt-40">
       <div className="mb-40">
-        <h1 className="mb-4 text-center text-4xl">Register</h1>
+        <h1 id="register-title" className="mb-4 text-center text-4xl">
+          Inscription
+        </h1>
         <form className="mx-auto max-w-md" onSubmit={handleFormSubmit}>
           <input
             name="name"
@@ -72,7 +86,7 @@ const RegisterPage = () => {
             value={formData.password}
             onChange={handleFormData}
           />
-          <button className="primary my-2">Register</button>
+          <button className="primary my-2">Valider</button>
         </form>
 
         <div className="mb-4 flex w-full items-center gap-4">
