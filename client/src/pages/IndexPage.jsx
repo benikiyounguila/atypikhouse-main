@@ -78,28 +78,79 @@ const IndexPage = () => {
 
 const Pagination = ({ placesPerPage, totalPlaces, paginate, currentPage }) => {
   const pageNumbers = [];
-
   for (let i = 1; i <= Math.ceil(totalPlaces / placesPerPage); i++) {
     pageNumbers.push(i);
   }
 
+  // Fonction pour obtenir les numéros de page à afficher
+  const getPageNumbers = () => {
+    const totalPages = pageNumbers.length;
+    if (totalPages <= 5) return pageNumbers;
+
+    if (currentPage <= 3) return [1, 2, 3, 4, 5, '...', totalPages];
+    if (currentPage >= totalPages - 2)
+      return [
+        1,
+        '...',
+        totalPages - 4,
+        totalPages - 3,
+        totalPages - 2,
+        totalPages - 1,
+        totalPages,
+      ];
+
+    return [
+      1,
+      '...',
+      currentPage - 1,
+      currentPage,
+      currentPage + 1,
+      '...',
+      totalPages,
+    ];
+  };
+
   return (
     <nav className="flex justify-center mt-8">
-      <ul className="flex">
-        {pageNumbers.map((number) => (
-          <li key={number} className="mx-1">
-            <button
-              onClick={() => paginate(number)}
-              className={`px-4 py-2 border rounded ${
-                currentPage === number
-                  ? 'bg-primary text-white'
-                  : 'bg-white text-primary'
-              }`}
-            >
-              {number}
-            </button>
+      <ul className="flex flex-wrap justify-center items-center space-x-2">
+        <li>
+          <button
+            onClick={() => paginate(Math.max(1, currentPage - 1))}
+            className="px-2 py-1 border rounded bg-white text-primary hover:bg-primary hover:text-white transition-colors"
+            disabled={currentPage === 1}
+          >
+            &laquo;
+          </button>
+        </li>
+        {getPageNumbers().map((number, index) => (
+          <li key={index}>
+            {number === '...' ? (
+              <span className="px-2 py-1">...</span>
+            ) : (
+              <button
+                onClick={() => paginate(number)}
+                className={`px-2 py-1 border rounded ${
+                  currentPage === number
+                    ? 'bg-primary text-white'
+                    : 'bg-white text-primary hover:bg-primary hover:text-white'
+                } transition-colors`}
+              >
+                {number}
+              </button>
+            )}
           </li>
         ))}
+        <li>
+          <button
+            onClick={() =>
+              paginate(Math.min(pageNumbers.length, currentPage + 1))
+            }
+            className="px-2 py-1 border rounded bg-white text-primary hover:bg-primary hover:text-white transition-colors"
+            disabled={currentPage === pageNumbers.length}
+          >
+            &raquo;
+          </button>
+        </li>
       </ul>
     </nav>
   );
