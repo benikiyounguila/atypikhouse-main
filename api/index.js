@@ -45,16 +45,6 @@ app.use(
   })
 );
 
-// app.post("/api/email/send", async (req, res) => {
-//   try {
-//     const { to, subject, text } = req.body;
-//     await sendEmail({ to, subject, text });
-//     res.json({ success: true, message: "Email envoyé avec succès" });
-//   } catch (error) {
-//     res.status(500).json({ success: false, message: error.message });
-//   }
-// });
-
 // Middleware pour traiter le JSON
 app.use(express.json());
 
@@ -66,12 +56,23 @@ app.use("/api/places", require("./routes/place"));
 // Route de base
 app.use("/", require("./routes"));
 
-// Lancement du serveur
-app.listen(process.env.PORT || 8000, (err) => {
-  if (err) {
-    console.log("Erreur lors de la connexion au serveur: ", err);
-  }
-  console.log(`Le serveur fonctionne sur le port ${process.env.PORT}`);
-});
+//Lancement du serveur
+// app.listen(process.env.PORT || 8000, (err) => {
+//   if (err) {
+//     console.log("Erreur lors de la connexion au serveur: ", err);
+//   }
+//   console.log(`Le serveur fonctionne sur le port ${process.env.PORT}`);
+// });
+
+//Lancement du serveur uniquement si ce n'est pas un test
+if (process.env.NODE_ENV !== "test") {
+  const port = process.env.PORT || 8000;
+  app.listen(port, (err) => {
+    if (err) {
+      console.log("Erreur lors de la connexion au serveur: ", err);
+    }
+    console.log(`Le serveur fonctionne sur le port ${port}`);
+  });
+}
 
 module.exports = app;

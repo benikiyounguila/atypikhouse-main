@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
+    "test": "cross-env NODE_ENV=test jest --coverage --forceExit",
     "generate-sitemap": "node ./scripts/sitemap-generator.js"
+  },
+  "jest": {
+    "testEnvironment": "node"
   },
   "keywords": [
     "api",
@@ -41,6 +45,7 @@
   },
   "devDependencies": {
     "@types/express": "^5.0.0",
+    "cross-env": "^7.0.3",
     "prettier": "^3.3.3"
   }
 }

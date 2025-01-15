@@ -1,13 +1,13 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
 const replySchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: "User", required: true },
   comment: { type: String, required: true },
   createdAt: { type: Date, default: Date.now },
 });
 
 const reviewSchema = new mongoose.Schema({
-  user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
+  user: { type: mongoose.Schema.ObjectId, ref: "User", required: true },
   rating: { type: Number, required: true, min: 1, max: 5 },
   comment: { type: String, required: true },
   replies: [replySchema],
@@ -17,7 +17,7 @@ const reviewSchema = new mongoose.Schema({
 const placeSchema = new mongoose.Schema({
   owner: {
     type: mongoose.Schema.ObjectId,
-    ref: 'User',
+    ref: "User",
     required: true,
   },
   title: {
@@ -44,7 +44,7 @@ const placeSchema = new mongoose.Schema({
   },
   type: {
     type: String,
-    enum: ['Treehouse', 'Yurt', 'Boat', 'Cave', 'Igloo', 'Other'],
+    enum: ["Treehouse", "Yurt", "Boat", "Cave", "Igloo", "Other"],
     required: true,
   },
   amenities: [{ type: String }],
@@ -53,7 +53,7 @@ const placeSchema = new mongoose.Schema({
       name: { type: String, required: true },
       type: {
         type: String,
-        enum: ['text', 'number', 'boolean'],
+        enum: ["text", "number", "boolean"],
         required: true,
       },
       required: { type: Boolean, default: false },
@@ -63,6 +63,6 @@ const placeSchema = new mongoose.Schema({
   reviews: [reviewSchema],
 });
 
-const Place = mongoose.model('Place', placeSchema);
+const Place = mongoose.model("Place", placeSchema);
 
 module.exports = Place;
