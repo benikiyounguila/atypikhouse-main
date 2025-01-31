@@ -1,42 +1,84 @@
-const path = require('path');
-const nodeExternals = require('webpack-node-externals');
+const path = require("path");
+const nodeExternals = require("webpack-node-externals");
 
 const clientConfig = {
-    mode: 'development',
-    entry: './client/src/index.js',
-    output: {
-        path: path.resolve(__dirname, 'client/build'),
-        filename: 'static/js/main.js',
+  name: "client",
+  mode: "development",
+  entry: "./client/src/main.jsx",
+  output: {
+    path: path.resolve(__dirname, "client/build"),
+    filename: "static/js/main.js",
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json"],
+    modules: ["node_modules", "client/src"],
+    alias: {
+      "@": path.resolve(__dirname, "client/src"),
     },
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: 'babel-loader',
-            },
-        ],
-    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader", "postcss-loader"],
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: "asset/resource",
+      },
+    ],
+  },
 };
 
 const serverConfig = {
-    mode: 'development',
-    entry: './api/src/server.js',
-    target: 'node',
-    externals: [nodeExternals()],
-    output: {
-        path: path.resolve(__dirname, 'api/build'),
-        filename: 'server.js',
+  name: "server",
+  mode: "development",
+  entry: "./api/src/server.js",
+  target: "node",
+  externals: [nodeExternals()],
+  output: {
+    path: path.resolve(__dirname, "api/build"),
+    filename: "server.js",
+  },
+  resolve: {
+    extensions: [".js", ".jsx", ".json"],
+    modules: ["node_modules", "client/src"],
+    alias: {
+      "@": path.resolve(__dirname, "client/src"),
     },
-    module: {
-        rules: [
-            {
-                test: /\.jsx?$/,
-                exclude: /node_modules/,
-                use: 'babel-loader',
-            },
-        ],
-    },
+  },
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env", "@babel/preset-react"],
+          },
+        },
+      },
+      {
+        test: /\.(png|jpe?g|gif|svg)$/i,
+        type: "asset/resource",
+      },
+      {
+        test: /\.css$/,
+        use: "null-loader", // Utilisez null-loader pour ignorer les fichiers CSS côté serveur
+      },
+    ],
+  },
 };
 
 module.exports = [clientConfig, serverConfig];

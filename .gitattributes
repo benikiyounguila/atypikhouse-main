@@ -3,3 +3,5 @@
 
 # Set to CRLF for specific files (e.g., Windows batch scripts)
 *.bat text eol=crlf
+*.js text eol=lf
+*.css text eol=lf

@@ -6,6 +6,13 @@ module.exports = {
     './components/ui/**/*.{js,jsx}',
     './app/**/*.{js,jsx}',
     './src/**/*.{js,jsx}',
+    './client/src/**/*.{html,js,jsx}',
+    './client/public/index.html',
+
+    // './index.html',
+    // './src/**/*.{js,ts,jsx,tsx}',
+    //'./client/src/**/*.{html,js,jsx}',
+    // './client/public/index.html',
   ],
   theme: {
     container: {
@@ -22,6 +29,7 @@ module.exports = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        border: 'hsl(var(--border))',
         primary: {
           DEFAULT: '#F5385d',
           foreground: 'hsl(var(--primary-foreground))',
@@ -55,6 +63,7 @@ module.exports = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+        DEFAULT: 'var(--radius)',
       },
       keyframes: {
         'accordion-down': {

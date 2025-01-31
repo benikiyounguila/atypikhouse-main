@@ -843,7 +843,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.25.9"
     "@babel/helper-plugin-utils" "^7.25.9"
 
-"@babel/preset-env@^7.26.7":
+"@babel/preset-env@^7.26.0":
   version "7.26.7"
   resolved "https://registry.npmjs.org/@babel/preset-env/-/preset-env-7.26.7.tgz"
   integrity sha512-Ycg2tnXwixaXOVb29rana8HNPgLVBof8qqtNQ9LE22IoyZboQbGSxI6ZySMdW3K5nAe6gu35IaJefUJflhUFTQ==
@@ -2468,7 +2468,7 @@ domexception@^4.0.0:
   dependencies:
     webidl-conversions "^7.0.0"
 
-dotenv@^16.4.7:
+dotenv@^16.3.1:
   version "16.4.7"
   resolved "https://registry.npmjs.org/dotenv/-/dotenv-16.4.7.tgz"
   integrity sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==
@@ -4661,9 +4661,9 @@ v8-to-istanbul@^9.0.1:
     convert-source-map "^2.0.0"
 
 vite@^4.0.0, vite@^4.1.0-beta.0:
-  version "4.5.5"
-  resolved "https://registry.npmjs.org/vite/-/vite-4.5.5.tgz"
-  integrity sha512-ifW3Lb2sMdX+WU91s3R0FyQlAyLxOzCSCP37ujw0+r5POeHPwe6udWVIElKQq8gk3t7b8rkmvqC6IHBpCff4GQ==
+  version "4.5.9"
+  resolved "https://registry.npmjs.org/vite/-/vite-4.5.9.tgz"
+  integrity sha512-qK9W4xjgD3gXbC0NmdNFFnVFLMWSNiR3swj957yutwzzN16xF/E7nmtAyp1rT9hviDroQANjE4HK3H4WqWdFtw==
   dependencies:
     esbuild "^0.18.10"
     postcss "^8.4.27"
