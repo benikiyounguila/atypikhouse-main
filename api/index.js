@@ -6,8 +6,7 @@ const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
 const adminRoutes = require("./routes/admin");
-// const sendEmail = require("./emailService.js");
-//const App = require("../client/src/App").default;
+
 
 // Connexion à la base de données
 connectWithDB();
