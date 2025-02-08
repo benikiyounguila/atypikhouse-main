@@ -8,7 +8,7 @@ import App from "../../client/src/App";
 const app = express();
 const port = process.env.PORT || 3000;
 
-//Servir les fichiers statiques du build client
+// //Servir les fichiers statiques du build client
 app.use(express.static(path.resolve(__dirname, "../../client/build")));
 
 app.get("*", (req, res) => {
