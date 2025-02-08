@@ -6,6 +6,11 @@ const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
 const adminRoutes = require("./routes/admin");
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 9ad4954f5bfb1349f54d13dd43d427c35e849876
 // Connexion à la base de données
 connectWithDB();
 
