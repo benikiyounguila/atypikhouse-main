@@ -25,7 +25,8 @@ app.use(cookieParser());
 // Configuration unique de CORS
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    //origin: process.env.CLIENT_URL,
+    origin: "https://atypikhouse-frontend-main.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
