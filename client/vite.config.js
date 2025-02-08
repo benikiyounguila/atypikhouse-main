@@ -6,10 +6,20 @@ import path from 'path';
 export default defineConfig({
   plugins: [react()],
   server: {
-    proxy: {
-      '/api': 'http://localhost:5173',
+  //   proxy: {
+  //     '/api': 'http://localhost:5173',
+  //   },
+  // },
+
+      proxy: {
+      '/api': {
+        target: 'https://atypikhouse-main.onrender.com',
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     },
   },
+                            
   build: {
     outDir: 'dist',
     assetsDir: 'assets',
