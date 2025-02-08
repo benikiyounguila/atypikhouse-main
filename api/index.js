@@ -6,11 +6,7 @@ const cookieSession = require("cookie-session");
 const cookieParser = require("cookie-parser");
 const cloudinary = require("cloudinary").v2;
 const adminRoutes = require("./routes/admin");
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 9ad4954f5bfb1349f54d13dd43d427c35e849876
 // Connexion à la base de données
 connectWithDB();
 
@@ -29,7 +25,8 @@ app.use(cookieParser());
 // Configuration unique de CORS
 app.use(
   cors({
-    origin: process.env.CLIENT_URL,
+    //origin: process.env.CLIENT_URL,
+    origin: "https://atypikhouse-frontend-main.onrender.com",
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
