@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '@/assets/images/Logo_AtypikHouse.png';
+// import Logo from '@/assets/images/Logo_AtypikHouse.png';
+import Logo from '../../assets/images/Logo_AtypikHouse.png';
 import { useAuth } from '../../../hooks';
 import SearchBar from './SearchBar';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
@@ -52,9 +53,9 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 z-10 flex w-screen justify-between bg-white py-4 ${hasShadow ? 'shadow-md' : ''}`}
+      className={`fixed top-0 left-0 right-0 z-10 flex justify-between items-center bg-white py-4 ${hasShadow ? 'shadow-md' : ''}`}
     >
-      <div className="flex items-center justify-between w-full max-w-screen-xl px-4">
+      <div className="flex justify-between items-center w-full max-w-screen-xl mx-auto px-4">
         <a href="/" className="flex items-center gap-1">
           <img
             className="h-12 w-24 md:h-16 md:w-32"
@@ -62,6 +63,8 @@ export const Header = () => {
             alt="AtypikHouse Logo"
           />
         </a>
+
+        {/* Condition pour afficher ou masquer la barre de recherche */}
         {showSearchBar && <SearchBar />}
 
         <div className="relative" ref={menuRef}>
