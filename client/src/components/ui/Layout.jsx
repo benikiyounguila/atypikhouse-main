@@ -34,7 +34,7 @@ const Layout = () => {
               className="text-blue-800 md:text-5xl font-bold text-center mt-16 mb-4
              "
             >
-              Gérer votre hébergement insolite
+              Louez et gérer un hébergement insolite
             </h1>
             <p className="text-gray-800 text-center mb-8">
               Suivez vos réservations, inscrivez-vous dès aujourd'hui et
