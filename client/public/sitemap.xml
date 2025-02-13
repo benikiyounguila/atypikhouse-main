@@ -1,93 +1,78 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/admincomments/</loc>
     <lastmod>2024-11-19T19:46:43.918Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/admindashboard/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/adminperks/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/adminproperties/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/adminusers/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/bookingspage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/indexpage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/loginpage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/notfoundpage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/placepage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/placesformpage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/placespage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/profilepage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/registerpage/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://atypikhouse-frontend-main.onrender.com/singlebookedplace/</loc>
     <lastmod>2024-11-19T19:46:43.919Z</lastmod>
     <changefreq>daily</changefreq>
-    <priority>0.7</priority>
   </url>
 </urlset>
