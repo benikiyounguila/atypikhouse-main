@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://atypikhouse.com/sitemap.xml
+Sitemap: https://atypikhouse-frontend-main.onrender.com/sitemap.xml
