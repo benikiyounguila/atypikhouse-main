@@ -5,6 +5,11 @@ import { Link, useLocation } from 'react-router-dom';
 const Breadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
+  const isHomePage = location.pathname === '/';
+
+  if (isHomePage) {
+    return null;
+  }
 
   const isHomePage = location.pathname === '/';
 

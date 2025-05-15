@@ -1,4 +1,8 @@
 User-agent: *
 Allow: /
 
+<<<<<<< HEAD
 Sitemap: https://atypikhouse-frontend-main.onrender.com//sitemap.xml
+=======
+Sitemap: https://atypikhouse-frontend-main.onrender.com/sitemap.xml
+>>>>>>> refs/remotes/origin/main

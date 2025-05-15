@@ -1,6 +1,10 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
+<<<<<<< HEAD
 //import Logo from '@/assets/images/Logo_AtypikHouse.png';
+=======
+// import Logo from '@/assets/images/Logo_AtypikHouse.png';
+>>>>>>> refs/remotes/origin/main
 import Logo from '../../assets/images/Logo_AtypikHouse.png';
 import { useAuth } from '../../../hooks';
 import SearchBar from './SearchBar';
@@ -65,6 +69,10 @@ export const Header = () => {
           />
         </a>
 
+<<<<<<< HEAD
+=======
+        {/* Condition pour afficher ou masquer la barre de recherche */}
+>>>>>>> refs/remotes/origin/main
         {showSearchBar && <SearchBar />}
 
         <div className="relative" ref={menuRef}>
