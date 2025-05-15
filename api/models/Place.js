@@ -63,6 +63,8 @@ const placeSchema = new mongoose.Schema({
   reviews: [reviewSchema],
 });
 
-const Place = mongoose.model("Place", placeSchema);
+// const Place = mongoose.model("Place", placeSchema);
+const Place = mongoose.models.Place || mongoose.model("Place", placeSchema);
+
 
 module.exports = Place;

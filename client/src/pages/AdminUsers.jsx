@@ -11,20 +11,42 @@ const AdminUsers = () => {
 
   const API_BASE_URL = import.meta.env.VITE_BASE_URL;
 
+  // useEffect(() => {
+  //   const token = localStorage.getItem('token');
+
+  //   axios
+  //     .get(`${API_BASE_URL}/api/admin/users`, {
+  //       headers: {
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //     })
+  //     .then((response) => {
+  //       console.log("Données reçues :", response.data);
+  //       setUsers(response.data.data);
+  //     })
+  //     .catch((error) => console.error(error));
+  // }, [API_BASE_URL]);
+
   useEffect(() => {
     const token = localStorage.getItem('token');
-
-    axios
-      .get(`${API_BASE_URL}/api/admin/users`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-      .then((response) => {
+  
+    axios.get(`${API_BASE_URL}/api/admin/users`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    })
+    .then((response) => {
+      console.log("Données reçues :", response.data);
+      if (Array.isArray(response.data.data)) {
         setUsers(response.data.data);
-      })
-      .catch((error) => console.error(error));
+      } else {
+        console.error("Format inattendu :", response.data);
+        setUsers([]);
+      }
+    })
+    .catch((error) => console.error("Erreur API :", error));
   }, [API_BASE_URL]);
+  
 
   const handleDelete = (userId) => {
     const adminUser = users.find((user) => user._id === userId && user.isAdmin);
@@ -117,12 +139,33 @@ const AdminUsers = () => {
       .catch((error) => console.error(error));
   };
 
-  const filteredUsers = users.filter((user) => {
-    return (
-      user.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
-      (roleFilter ? user.role === roleFilter : true)
-    );
-  });
+  // const filteredUsers = users.filter((user) => {
+  //   return (
+  //     user.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+  //     (roleFilter ? user.role === roleFilter : true)
+  //   );
+  // });
+
+  // const filteredUsers = Array.isArray(users)
+  // ? users.filter((user) => {
+  //     return (
+  //       user.name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+  //       (roleFilter ? user.role === roleFilter : true)
+  //     );
+  //   })
+  // : [];
+
+  const filteredUsers = Array.isArray(users)
+  ? users.filter((user) => {
+      const name = user.name || '';
+      return (
+        name.toLowerCase().includes(searchTerm.toLowerCase()) &&
+        (roleFilter ? user.role === roleFilter : true)
+      );
+    })
+  : [];
+
+
 
   return (
     <div className="container mx-auto mt-8 p-4">

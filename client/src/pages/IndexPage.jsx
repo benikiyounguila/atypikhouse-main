@@ -5,7 +5,10 @@ import PlaceCard from '@/components/ui/PlaceCard';
 
 const IndexPage = () => {
   const allPlaces = usePlaces();
-  const { places, loading } = allPlaces;
+  // const { places, loading } = allPlaces;
+  const { places = [], loading = false } = allPlaces || {};
+  console.log("✅ Places reçues:", places);
+
   const [currentPage, setCurrentPage] = useState(1);
   const [placesPerPage] = useState(12); // Vous pouvez ajuster ce nombre selon vos besoins
 
@@ -75,6 +78,70 @@ const IndexPage = () => {
     </div>
   );
 };
+
+// const IndexPage = () => {
+//   const allPlaces = usePlaces();
+//   const { places = [], loading = false } = allPlaces || {};
+
+//   const [currentPage, setCurrentPage] = useState(1);
+//   const [placesPerPage] = useState(12);
+
+//   const indexOfLastPlace = currentPage * placesPerPage;
+//   const indexOfFirstPlace = indexOfLastPlace - placesPerPage;
+//   const currentPlaces = places.slice(indexOfFirstPlace, indexOfLastPlace);
+
+//   const paginate = (pageNumber) => setCurrentPage(pageNumber);
+
+//   useEffect(() => {
+//     setCurrentPage(1);
+//   }, [places]);
+
+//   return (
+//     <div className="px-4 py-38 bg-gray-100">
+//       {/* ✨ Affichage conditionnel avec fallback visuel si loading */}
+//       {loading && places.length === 0 && (
+//         <Spinner />
+//       )}
+
+//       {!loading && places.length === 0 && (
+//         <div className="fixed inset-0 flex items-center justify-center bg-white bg-opacity-90 z-50">
+//           <div className="text-center p-8 bg-white shadow-lg rounded-lg">
+//             <h1 className="text-3xl font-semibold mb-4">Result not found!</h1>
+//             <p className="text-lg font-semibold mb-6">
+//               Sorry, we couldn&#39;t find the place you&#39;re looking for.
+//             </p>
+//             <button className="rounded-full bg-primary p-2 text-white hover:bg-primary-dark transition duration-300">
+//               <a href="/" className="flex items-center justify-center gap-1">
+//                 <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
+//                 Go back
+//               </a>
+//             </button>
+//           </div>
+//         </div>
+//       )}
+
+//       {places.length > 0 && (
+//         <>
+//           <div className="grid grid-cols-1 justify-items-center md:grid-cols-2 md:gap-0 lg:grid-cols-3 lg:gap-2 xl:grid-cols-4 xl:gap-10">
+//             {currentPlaces.map((place) => (
+//               <PlaceCard place={place} key={place._id} />
+//             ))}
+//           </div>
+
+//           {places.length > placesPerPage && (
+//             <Pagination
+//               placesPerPage={placesPerPage}
+//               totalPlaces={places.length}
+//               paginate={paginate}
+//               currentPage={currentPage}
+//             />
+//           )}
+//         </>
+//       )}
+//     </div>
+//   );
+// };
+
 
 const Pagination = ({ placesPerPage, totalPlaces, paginate, currentPage }) => {
   const pageNumbers = [];
@@ -154,6 +221,7 @@ const Pagination = ({ placesPerPage, totalPlaces, paginate, currentPage }) => {
       </ul>
     </nav>
   );
+
 };
 
 export default IndexPage;

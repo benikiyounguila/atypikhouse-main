@@ -6,6 +6,12 @@ const Breadcrumb = () => {
   const location = useLocation();
   const pathnames = location.pathname.split('/').filter((x) => x);
 
+  const isHomePage = location.pathname === '/';
+
+  if (isHomePage) {
+    return null;
+  }
+
   return (
     <nav aria-label="Fil d'Ariane">
       <ol className="flex space-x-2">

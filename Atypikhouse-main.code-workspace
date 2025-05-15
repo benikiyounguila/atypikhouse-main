@@ -1,0 +1,15 @@
+{
+	"folders": [
+		{
+			"name": "Atypikhouse-main",
+			"path": "."
+		},
+		{
+			"name": "atypikhouse-next",
+			"path": "../atypikhouse-next"
+		}
+	],
+	"settings": {
+		"roo-cline.vsCodeLmModelSelector": {}
+	}
+}

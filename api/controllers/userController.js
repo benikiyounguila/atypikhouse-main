@@ -1,7 +1,7 @@
-const User = require('../models/User');
-const cookieToken = require('../utils/cookieToken');
-const bcrypt = require('bcryptjs');
-const cloudinary = require('cloudinary').v2;
+const User = require("../models/User");
+const cookieToken = require("../utils/cookieToken");
+const bcrypt = require("bcryptjs");
+const cloudinary = require("cloudinary").v2;
 
 // Register/SignUp user
 exports.register = async (req, res) => {
@@ -10,7 +10,7 @@ exports.register = async (req, res) => {
 
     if (!name || !email || !password) {
       return res.status(400).json({
-        message: 'Name, email and password are required',
+        message: "Name, email and password are required",
       });
     }
 
@@ -19,7 +19,7 @@ exports.register = async (req, res) => {
 
     if (user) {
       return res.status(400).json({
-        message: 'User already registered!',
+        message: "User already registered!",
       });
     }
 
@@ -33,7 +33,7 @@ exports.register = async (req, res) => {
     cookieToken(user, res);
   } catch (err) {
     res.status(500).json({
-      message: 'Internal server Error',
+      message: "Internal server Error",
       error: err,
     });
   }
@@ -47,7 +47,7 @@ exports.login = async (req, res) => {
     // check for presence of email and password
     if (!email || !password) {
       return res.status(400).json({
-        message: 'Email and password are required!',
+        message: "Email and password are required!",
       });
     }
 
@@ -55,7 +55,7 @@ exports.login = async (req, res) => {
 
     if (!user) {
       return res.status(400).json({
-        message: 'User does not exist!',
+        message: "User does not exist!",
       });
     }
 
@@ -64,7 +64,7 @@ exports.login = async (req, res) => {
 
     if (!isPasswordCorrect) {
       return res.status(401).json({
-        message: 'Email or password is incorrect!',
+        message: "Email or password is incorrect!",
       });
     }
 
@@ -72,7 +72,7 @@ exports.login = async (req, res) => {
     cookieToken(user, res);
   } catch (err) {
     res.status(500).json({
-      message: 'Internal server Error',
+      message: "Internal server Error",
       error: err,
     });
   }
@@ -87,7 +87,7 @@ exports.googleLogin = async (req, res) => {
       return (
         res.status(400),
         json({
-          message: 'Name and email are required',
+          message: "Name and email are required",
         })
       );
     }
@@ -108,7 +108,7 @@ exports.googleLogin = async (req, res) => {
     cookieToken(user, res);
   } catch (err) {
     res.status(500).json({
-      message: 'Internal server Error',
+      message: "Internal server Error",
       error: err,
     });
   }
@@ -119,13 +119,13 @@ exports.uploadPicture = async (req, res) => {
   const { path } = req.file;
   try {
     let result = await cloudinary.uploader.upload(path, {
-      folder: 'Airbnb/Users',
+      folder: "Airbnb/Users",
     });
     res.status(200).json(result.secure_url);
   } catch (error) {
     res.status(500).json({
       error,
-      message: 'Internal server error',
+      message: "Internal server error",
     });
   }
 };
@@ -141,7 +141,7 @@ exports.updateUserDetails = async (req, res) => {
       return (
         res.status(404),
         json({
-          message: 'User not found',
+          message: "User not found",
         })
       );
     }
@@ -160,7 +160,7 @@ exports.updateUserDetails = async (req, res) => {
     const updatedUser = await user.save();
     cookieToken(updatedUser, res);
   } catch (error) {
-    res.status(500).json({ message: 'Internal server error' }, error);
+    res.status(500).json({ message: "Internal server error" }, error);
   }
 };
 
@@ -170,20 +170,20 @@ exports.getAllUsers = async (req, res) => {
     const users = await User.find(); // Récupérer tous les utilisateurs de la base de données
     res.status(200).json(users); // Répondre avec la liste des utilisateurs
   } catch (error) {
-    res.status(500).json({ message: 'Erreur du serveur', error });
+    res.status(500).json({ message: "Erreur du serveur", error });
   }
 };
 
 // Logout
 exports.logout = async (req, res) => {
-  res.cookie('token', null, {
+  res.cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
     secure: true, // Only send over HTTPS
-    sameSite: 'none', // Allow cross-origin requests
+    sameSite: "none", // Allow cross-origin requests
   });
   res.status(200).json({
     success: true,
-    message: 'Logged out',
+    message: "Logged out",
   });
 };

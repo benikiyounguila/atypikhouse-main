@@ -8,6 +8,8 @@ module.exports = {
     './src/**/*.{js,jsx}',
     './client/src/**/*.{html,js,jsx}',
     './client/public/index.html',
+    './api/src/**/*.js',
+    './index.html',
 
     // './index.html',
     // './src/**/*.{js,ts,jsx,tsx}',
@@ -86,3 +88,5 @@ module.exports = {
     themes: ['light', 'dark', 'cupcake'],
   },
 };
+// tailwind.config.js;
+// tailwind.config.js

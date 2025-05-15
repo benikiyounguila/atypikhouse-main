@@ -1,6 +1,80 @@
+// import React from 'react';
+// import { Outlet, Link, useLocation } from 'react-router-dom';
+// import { Helmet } from 'react-helmet-async';
+// import { Header } from './Header';
+// import Footer from './Footer';
+// import Breadcrumb from './Breadcrumb';
+
+// const Layout = () => {
+//   const location = useLocation();
+//   const isHomePage = location.pathname === '/';
+
+//   return (
+//     <div className="flex flex-col min-h-screen">
+//       <Helmet>
+//         <title>Gérez et Louez des logements insolites - AtypikHouse</title>
+//         <meta
+//           name="description"
+//           content="Suivez vos réservations et commencez votre aventure en toute simplicité avec notre application intuitive pour la gestion de logements insolites."
+//         />
+//         <link
+//           rel="canonical"
+//           href={`https://votredomaine.com${location.pathname}`}
+//         />
+//       </Helmet>
+
+//       <Header />
+//       <div className="container mx-auto px-4 py-4 text-gray-600 text-center mt-20 text-sm">
+//         <Breadcrumb />
+//       </div>
+//       {isHomePage && (
+//         <main className="flex-grow mt-18">
+//           <div className="container mx-auto px-4 py-22">
+//             <h1
+//               className="text-blue-800 md:text-5xl font-bold text-center mt-16 mb-4
+//              "
+//             >
+//               Gérez et Louez des logements insolites
+//             </h1>
+//             <p className="text-gray-800 text-center mb-8">
+//               Suivez vos réservations, inscrivez-vous dès aujourd'hui et
+//               commencez votre aventure <br />
+//               en toute simplicité avec notre application intuitive !
+//             </p>
+
+//             <div className="flex justify-center items-center space-x-4 mb-12">
+//               <Link
+//                 to="/login"
+//                 className="btn btn-sm md:btn-md btn-outline btn-accent"
+//                 aria-label="Se connecter à votre compte"
+//               >
+//                 Se connecter
+//               </Link>
+//               <Link
+//                 to="/register"
+//                 className="btn btn-sm md:btn-md btn-accent"
+//                 aria-label="Créer un nouveau compte"
+//               >
+//                 S'inscrire
+//               </Link>
+//             </div>
+//           </div>
+//         </main>
+//       )}
+
+//       <div className="flex-grow">
+//         <Outlet />
+//       </div>
+
+//       <Footer />
+//     </div>
+//   );
+// };
+
 import React from 'react';
 import { Outlet, Link, useLocation } from 'react-router-dom';
-import { Helmet } from 'react-helmet-async';
+import * as HelmetModule from 'react-helmet-async'; // Changement ici
+const { Helmet } = HelmetModule; // Extraire Helmet du module
 import { Header } from './Header';
 import Footer from './Footer';
 import Breadcrumb from './Breadcrumb';
@@ -8,11 +82,14 @@ import Breadcrumb from './Breadcrumb';
 const Layout = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
+  // const isHomePage = location?.pathname === '/';
+
 
   return (
     <div className="flex flex-col min-h-screen">
+      {/* {typeof window !== "undefined" && ( */}
       <Helmet>
-        <title>Contrôlez vos logements insolites - AtypikHouse</title>
+        <title>Gérez et Louez des logements insolites - AtypikHouse</title>
         <meta
           name="description"
           content="Suivez vos réservations et commencez votre aventure en toute simplicité avec notre application intuitive pour la gestion de logements insolites."
@@ -22,6 +99,7 @@ const Layout = () => {
           href={`https://votredomaine.com${location.pathname}`}
         />
       </Helmet>
+      {/* )} */}
 
       <Header />
       <div className="container mx-auto px-4 py-4 text-gray-600 text-center mt-20 text-sm">
@@ -34,7 +112,7 @@ const Layout = () => {
               className="text-blue-800 md:text-5xl font-bold text-center mt-16 mb-4
              "
             >
-              Gérer votre hébergement insolite
+              Gérez et Louez des logements insolites
             </h1>
             <p className="text-gray-800 text-center mb-8">
               Suivez vos réservations, inscrivez-vous dès aujourd'hui et

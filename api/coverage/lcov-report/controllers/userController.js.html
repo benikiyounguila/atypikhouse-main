@@ -441,10 +441,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const User = require('../models/User');
-const cookieToken = require('../utils/cookieToken');
-const bcrypt = require('bcryptjs');
-const cloudinary = require('cloudinary').v2;
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">const User = require("../models/User");
+const cookieToken = require("../utils/cookieToken");
+const bcrypt = require("bcryptjs");
+const cloudinary = require("cloudinary").v2;
 &nbsp;
 // Register/SignUp user
 exports.register = async (req, res) =&gt; {
@@ -453,7 +453,7 @@ exports.register = async (req, res) =&gt; {
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!name || !email || !password) {
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        message: 'Name, email and password are required',
+        message: "Name, email and password are required",
       });
     }
 &nbsp;
@@ -462,7 +462,7 @@ exports.register = async (req, res) =&gt; {
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (user) {
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        message: 'User already registered!',
+        message: "User already registered!",
       });
     }
 &nbsp;
@@ -476,7 +476,7 @@ exports.register = async (req, res) =&gt; {
     cookieToken(user, res);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({</span>
-      message: 'Internal server Error',
+      message: "Internal server Error",
       error: err,
     });
   }
@@ -490,7 +490,7 @@ exports.login = async (req, res) =&gt; {
     // check for presence of email and password
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!email || !password) {
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        message: 'Email and password are required!',
+        message: "Email and password are required!",
       });
     }
 &nbsp;
@@ -498,7 +498,7 @@ exports.login = async (req, res) =&gt; {
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!user) {
 <span class="cstat-no" title="statement not covered" >      return res.status(400).json({</span>
-        message: 'User does not exist!',
+        message: "User does not exist!",
       });
     }
 &nbsp;
@@ -507,7 +507,7 @@ exports.login = async (req, res) =&gt; {
 &nbsp;
     <span class="missing-if-branch" title="if path not taken" >I</span>if (!isPasswordCorrect) {
 <span class="cstat-no" title="statement not covered" >      return res.status(401).json({</span>
-        message: 'Email or password is incorrect!',
+        message: "Email or password is incorrect!",
       });
     }
 &nbsp;
@@ -515,7 +515,7 @@ exports.login = async (req, res) =&gt; {
     cookieToken(user, res);
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({</span>
-      message: 'Internal server Error',
+      message: "Internal server Error",
       error: err,
     });
   }
@@ -530,7 +530,7 @@ exports.googleLogin = <span class="fstat-no" title="function not covered" >as</s
 <span class="cstat-no" title="statement not covered" >      return (</span>
         res.status(400),
         json({
-          message: 'Name and email are required',
+          message: "Name and email are required",
         })
       );
     }
@@ -551,7 +551,7 @@ exports.googleLogin = <span class="fstat-no" title="function not covered" >as</s
 <span class="cstat-no" title="statement not covered" >    cookieToken(user, res);</span>
   } catch (err) {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({</span>
-      message: 'Internal server Error',
+      message: "Internal server Error",
       error: err,
     });
   }
@@ -562,13 +562,13 @@ exports.uploadPicture = async (req, res) =&gt; {
   const { path } = req.file;
   try {
     let result = await cloudinary.uploader.upload(path, {
-      folder: 'Airbnb/Users',
+      folder: "Airbnb/Users",
     });
     res.status(200).json(result.secure_url);
   } catch (error) {
 <span class="cstat-no" title="statement not covered" >    res.status(500).json({</span>
       error,
-      message: 'Internal server error',
+      message: "Internal server error",
     });
   }
 };
@@ -584,7 +584,7 @@ exports.updateUserDetails = <span class="fstat-no" title="function not covered" 
 <span class="cstat-no" title="statement not covered" >      return (</span>
         res.status(404),
         json({
-          message: 'User not found',
+          message: "User not found",
         })
       );
     }
@@ -603,7 +603,7 @@ exports.updateUserDetails = <span class="fstat-no" title="function not covered" 
     const updatedUser = <span class="cstat-no" title="statement not covered" >await user.save();</span>
 <span class="cstat-no" title="statement not covered" >    cookieToken(updatedUser, res);</span>
   } catch (error) {
-<span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: 'Internal server error' }, error);</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Internal server error" }, error);</span>
   }
 };
 &nbsp;
@@ -613,21 +613,21 @@ exports.getAllUsers = <span class="fstat-no" title="function not covered" >as</s
     const users = <span class="cstat-no" title="statement not covered" >await User.find();</span> // Récupérer tous les utilisateurs de la base de données
 <span class="cstat-no" title="statement not covered" >    res.status(200).json(users); </span>// Répondre avec la liste des utilisateurs
   } catch (error) {
-<span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: 'Erreur du serveur', error });</span>
+<span class="cstat-no" title="statement not covered" >    res.status(500).json({ message: "Erreur du serveur", error });</span>
   }
 };
 &nbsp;
 // Logout
 exports.logout = async (req, res) =&gt; {
-  res.cookie('token', null, {
+  res.cookie("token", null, {
     expires: new Date(Date.now()),
     httpOnly: true,
     secure: true, // Only send over HTTPS
-    sameSite: 'none', // Allow cross-origin requests
+    sameSite: "none", // Allow cross-origin requests
   });
   res.status(200).json({
     success: true,
-    message: 'Logged out',
+    message: "Logged out",
   });
 };
 &nbsp;</pre></td></tr></table></pre>
@@ -637,7 +637,7 @@ exports.logout = async (req, res) =&gt; {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2025-01-25T19:03:55.683Z
+                at 2025-05-06T00:14:03.959Z
             </div>
         <script src="../prettify.js"></script>
         <script>

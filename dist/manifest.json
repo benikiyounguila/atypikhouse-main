@@ -1,0 +1,35 @@
+{
+  "_popover-f0680f27.js": {
+    "css": [
+      "assets/popover-b494ebd6.css"
+    ],
+    "file": "assets/popover-f0680f27.js"
+  },
+  "index.html": {
+    "assets": [
+      "assets/Logo_AtypikHouse-3745e8b1.png"
+    ],
+    "file": "assets/main-85865692.js",
+    "imports": [
+      "_popover-f0680f27.js"
+    ],
+    "isEntry": true,
+    "src": "index.html"
+  },
+  "popover.css": {
+    "file": "assets/popover-b494ebd6.css",
+    "src": "popover.css"
+  },
+  "src/assets/images/Logo_AtypikHouse.png": {
+    "file": "assets/Logo_AtypikHouse-3745e8b1.png",
+    "src": "src/assets/images/Logo_AtypikHouse.png"
+  },
+  "src/ssr.jsx": {
+    "file": "assets/ssr-8ccedb77.js",
+    "imports": [
+      "_popover-f0680f27.js"
+    ],
+    "isEntry": true,
+    "src": "src/ssr.jsx"
+  }
+}

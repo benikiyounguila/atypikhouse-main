@@ -1,9 +1,11 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import Logo from '@/assets/images/Logo_AtypikHouse.png';
+//import Logo from '@/assets/images/Logo_AtypikHouse.png';
+import Logo from '../../assets/images/Logo_AtypikHouse.png';
 import { useAuth } from '../../../hooks';
 import SearchBar from './SearchBar';
 import { Avatar, AvatarImage } from '@radix-ui/react-avatar';
+import  ClienOnly from '../utils/ClientOnly'
 
 export const Header = () => {
   const auth = useAuth();
@@ -52,16 +54,17 @@ export const Header = () => {
 
   return (
     <header
-      className={`fixed top-0 z-10 flex w-screen justify-between bg-white py-4 ${hasShadow ? 'shadow-md' : ''}`}
+      className={`fixed top-0 left-0 right-0 z-10 flex justify-between items-center bg-white py-4 ${hasShadow ? 'shadow-md' : ''}`}
     >
-      <div className="flex items-center justify-between w-full max-w-screen-xl px-4">
+      <div className="flex justify-between items-center w-full max-w-screen-xl mx-auto px-4">
         <a href="/" className="flex items-center gap-1">
           <img
             className="h-12 w-24 md:h-16 md:w-32"
-            src={Logo}
+            src="/Logo_AtypikHouse.png"
             alt="AtypikHouse Logo"
           />
         </a>
+
         {showSearchBar && <SearchBar />}
 
         <div className="relative" ref={menuRef}>
@@ -85,6 +88,7 @@ export const Header = () => {
             </svg>
             <div className="ml-2 h-[35px] w-[35px] overflow-hidden rounded-full hidden md:block">
               {user ? (
+                <ClienOnly>
                 <Avatar>
                   <AvatarImage
                     src={
@@ -93,7 +97,8 @@ export const Header = () => {
                     }
                     className="h-full w-full"
                   />
-                </Avatar>
+                  </Avatar>
+                  </ClienOnly>
               ) : (
                 <svg
                   fill="#858080"

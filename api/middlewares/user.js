@@ -53,3 +53,59 @@ exports.isAdminOrModerator = (req, res, next) => {
     });
   }
 };
+
+// import jwt from "jsonwebtoken";
+// import User from "../models/User.js";
+
+// // Vérifie si l'utilisateur est connecté
+// export const isLoggedIn = async (req, res, next) => {
+//   const authHeader = req.header("Authorization");
+//   const token =
+//     req.cookies.token ||
+//     (authHeader ? authHeader.replace("Bearer ", "") : null);
+
+//   if (!token) {
+//     return res.status(401).json({
+//       success: false,
+//       message: "Login first to access this page",
+//     });
+//   }
+
+//   try {
+//     const decoded = jwt.verify(token, process.env.JWT_SECRET);
+//     console.log("Decoded token: ", decoded);
+//     req.user = await User.findById(decoded.id);
+//     console.log("Authenticated user: ", req.user);
+//     next();
+//   } catch (error) {
+//     console.error("JWT verification error:", error);
+//     return res.status(401).json({
+//       success: false,
+//       message: "Invalid token",
+//     });
+//   }
+// };
+
+// // Vérifie si l'utilisateur connecté est admin
+// export const isAdmin = (req, res, next) => {
+//   if (req.user && req.user.isAdmin) {
+//     next();
+//   } else {
+//     res.status(403).send("Access denied");
+//   }
+// };
+
+// // Vérifie si l'utilisateur connecté est soit admin soit modérateur
+// export const isAdminOrModerator = (req, res, next) => {
+//   if (
+//     req.user &&
+//     (req.user.role === "admin" || req.user.role === "modérateur")
+//   ) {
+//     next();
+//   } else {
+//     res.status(403).json({
+//       success: false,
+//       message: "Accès refusé : Vous n'avez pas les autorisations nécessaires.",
+//     });
+//   }
+// };

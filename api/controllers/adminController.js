@@ -1,17 +1,59 @@
-const User = require('../models/User');
+const User = require("../models/User");
 
 // Gestion des utilisateurs
+// exports.createManager = async (req, res) => {
+//   try {
+//     const { name, email, password } = req.body;
+//     const user = new User({ name, email, password, isAdmin: true });
+//     await user.save();
+//     res.status(201).json({ success: true, data: user });
+//   } catch (error) {
+//     res.status(500).json({
+//       success: false,
+//       message: 'Erreur lors de la création du gestionnaire',
+//       error,
+//     });
+//   }
+// };
+
+const bcrypt = require("bcryptjs");
+
 exports.createManager = async (req, res) => {
   try {
     const { name, email, password } = req.body;
-    const user = new User({ name, email, password, isAdmin: true });
+
+    // Vérification des données d'entrée
+    if (!name || !email || !password) {
+      return res
+        .status(400)
+        .json({ success: false, message: "All fields are required" });
+    }
+
+    // Vérifier si l'email existe déjà
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res
+        .status(400)
+        .json({ success: false, message: "User already exists" });
+    }
+
+    // Hash du mot de passe avant de sauvegarder
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const user = new User({
+      name,
+      email,
+      password: hashedPassword,
+      isAdmin: true,
+    });
     await user.save();
+
     res.status(201).json({ success: true, data: user });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Erreur lors de la création du gestionnaire',
-      error,
+      message: "Erreur lors de la création du gestionnaire",
+      error: error.message,
     });
   }
 };
@@ -28,14 +70,14 @@ exports.updateUser = async (req, res) => {
     );
 
     if (!updatedUser) {
-      return res.status(404).json({ message: 'User not found' });
+      return res.status(404).json({ message: "User not found" });
     }
 
     res
       .status(200)
-      .json({ message: 'User updated successfully', data: updatedUser });
+      .json({ message: "User updated successfully", data: updatedUser });
   } catch (error) {
-    res.status(500).json({ message: 'Error updating user', error });
+    res.status(500).json({ message: "Error updating user", error });
   }
 };
 
@@ -49,11 +91,11 @@ exports.updateUserRole = async (req, res) => {
     if (!user) {
       return res
         .status(404)
-        .json({ success: false, message: 'User not found' });
+        .json({ success: false, message: "User not found" });
     }
     res.status(200).json({ success: true, data: user });
   } catch (error) {
-    res.status(500).json({ success: false, message: 'Internal server error' });
+    res.status(500).json({ success: false, message: "Internal server error" });
   }
 };
 
@@ -61,7 +103,7 @@ exports.deleteUser = async (req, res) => {
   try {
     const { id } = req.params;
     await User.findByIdAndDelete(id);
-    res.status(200).json({ success: true, message: 'Utilisateur supprimé' });
+    res.status(200).json({ success: true, message: "Utilisateur supprimé" });
   } catch (error) {
     res.status(500).json({
       success: false,
@@ -72,15 +114,15 @@ exports.deleteUser = async (req, res) => {
 };
 
 // Gestion des perks
-const Place = require('../models/Place');
+const Place = require("../models/Place");
 
 const basePerks = [
-  { name: 'wifi' },
-  { name: 'parking' },
-  { name: 'tv' },
-  { name: 'radio' },
-  { name: 'pets' },
-  { name: 'enterence' },
+  { name: "wifi" },
+  { name: "parking" },
+  { name: "tv" },
+  { name: "radio" },
+  { name: "pets" },
+  { name: "enterence" },
 ];
 
 exports.getAllPerks = async (req, res) => {
@@ -91,7 +133,7 @@ exports.getAllPerks = async (req, res) => {
     // Ajout des perks utilisées dans les places
     places.forEach((place) => {
       place.perks.forEach((perk) => {
-        const icon = basePerks.find((p) => p.name === perk)?.icon || '';
+        const icon = basePerks.find((p) => p.name === perk)?.icon || "";
         allPerks.add(JSON.stringify({ name: perk, icon }));
       });
     });
@@ -103,7 +145,7 @@ exports.getAllPerks = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Erreur interne du serveur' });
+      .json({ success: false, message: "Erreur interne du serveur" });
   }
 };
 
@@ -117,7 +159,7 @@ exports.addPerk = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Erreur interne du serveur' });
+      .json({ success: false, message: "Erreur interne du serveur" });
   }
 };
 
@@ -131,7 +173,7 @@ exports.deletePerk = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Erreur interne du serveur' });
+      .json({ success: false, message: "Erreur interne du serveur" });
   }
 };
 
@@ -145,7 +187,7 @@ exports.getAllPlaces = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Erreur interne du serveur', error });
+      .json({ success: false, message: "Erreur interne du serveur", error });
   }
 };
 
@@ -156,7 +198,7 @@ exports.addPlace = async (req, res) => {
     const savedPlace = await newPlace.save();
     res.status(201).json({
       success: true,
-      message: 'Place added successfully',
+      message: "Place added successfully",
       data: savedPlace,
     });
   } catch (error) {
@@ -181,18 +223,18 @@ exports.updatePlace = async (req, res) => {
     if (!updatedPlace) {
       return res
         .status(404)
-        .json({ success: false, message: 'Place not found' });
+        .json({ success: false, message: "Place not found" });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Place updated successfully',
+      message: "Place updated successfully",
       data: updatedPlace,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Erreur lors de la mise à jour du lieu',
+      message: "Erreur lors de la mise à jour du lieu",
       error,
     });
   }
@@ -208,18 +250,18 @@ exports.deletePlace = async (req, res) => {
     if (!deletedPlace) {
       return res
         .status(404)
-        .json({ success: false, message: 'Place not found' });
+        .json({ success: false, message: "Place not found" });
     }
 
     res.status(200).json({
       success: true,
-      message: 'Place deleted successfully',
+      message: "Place deleted successfully",
       data: deletedPlace,
     });
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Erreur lors de la suppression du lieu',
+      message: "Erreur lors de la suppression du lieu",
       error,
     });
   }
@@ -235,7 +277,7 @@ exports.updateUserProfile = async (req, res) => {
   } catch (error) {
     res.status(500).json({
       success: false,
-      message: 'Erreur lors de la mise à jour du profil utilisateur',
+      message: "Erreur lors de la mise à jour du profil utilisateur",
       error,
     });
   }
@@ -249,31 +291,31 @@ exports.getAllUsers = async (req, res) => {
   } catch (error) {
     res
       .status(500)
-      .json({ success: false, message: 'Erreur interne du serveur', error });
+      .json({ success: false, message: "Erreur interne du serveur", error });
   }
 };
 
 // Gestion de la modération des avis
 exports.getAllReviews = async (req, res) => {
   try {
-    console.log('Début de getAllReviews');
+    console.log("Début de getAllReviews");
     const places = await Place.find()
-      .populate('reviews.user', 'name')
-      .populate('reviews.replies.user', 'name');
-    console.log('Places trouvées:', places.length);
+      .populate("reviews.user", "name")
+      .populate("reviews.replies.user", "name");
+    console.log("Places trouvées:", places.length);
 
     const allReviews = places.reduce(
       (acc, place) => [...acc, ...place.reviews],
       []
     );
-    console.log('Total des avis:', allReviews.length);
+    console.log("Total des avis:", allReviews.length);
 
     res.status(200).json({ success: true, data: allReviews });
   } catch (error) {
-    console.error('Erreur lors de la récupération des avis:', error);
+    console.error("Erreur lors de la récupération des avis:", error);
     res
       .status(500)
-      .json({ success: false, message: 'Erreur interne du serveur', error });
+      .json({ success: false, message: "Erreur interne du serveur", error });
   }
 };
 
@@ -288,18 +330,18 @@ exports.deleteReview = async (req, res) => {
     if (result.nModified === 0) {
       return res.status(404).json({
         success: false,
-        message: 'Aucun avis trouvé avec cet ID',
+        message: "Aucun avis trouvé avec cet ID",
       });
     }
 
     res
       .status(200)
-      .json({ success: true, message: 'Commentaire supprimé avec succès' });
+      .json({ success: true, message: "Commentaire supprimé avec succès" });
   } catch (error) {
-    console.error('Erreur lors de la suppression du commentaire:', error);
+    console.error("Erreur lors de la suppression du commentaire:", error);
     res.status(500).json({
       success: false,
-      message: 'Erreur lors de la suppression du commentaire',
+      message: "Erreur lors de la suppression du commentaire",
       error,
     });
   }
@@ -309,25 +351,25 @@ exports.deleteReply = async (req, res) => {
   try {
     const { reviewId, replyId } = req.params;
     const result = await Place.updateOne(
-      { 'reviews._id': reviewId },
-      { $pull: { 'reviews.$.replies': { _id: replyId } } }
+      { "reviews._id": reviewId },
+      { $pull: { "reviews.$.replies": { _id: replyId } } }
     );
 
     if (result.nModified === 0) {
       return res.status(404).json({
         success: false,
-        message: 'Aucune réponse trouvée avec cet ID',
+        message: "Aucune réponse trouvée avec cet ID",
       });
     }
 
     res
       .status(200)
-      .json({ success: true, message: 'Réponse supprimée avec succès' });
+      .json({ success: true, message: "Réponse supprimée avec succès" });
   } catch (error) {
-    console.error('Erreur lors de la suppression de la réponse:', error);
+    console.error("Erreur lors de la suppression de la réponse:", error);
     res.status(500).json({
       success: false,
-      message: 'Erreur lors de la suppression de la réponse',
+      message: "Erreur lors de la suppression de la réponse",
       error,
     });
   }
